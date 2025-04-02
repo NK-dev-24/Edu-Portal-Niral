@@ -1,72 +1,68 @@
 
 import React, { useState } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
-import { Mail, Lock, Eye, EyeOff } from 'lucide-react';
+import { Mail, Lock, Eye, EyeOff, ShieldCheck } from 'lucide-react';
 import AuthLayout from '../components/auth/AuthLayout';
-import { UserType } from '../components/auth/UserTypeSelector';
 import { toast } from '../components/ui/use-toast';
 import { Input } from '@/components/ui/input';
 import { Button } from '@/components/ui/button';
 import { Checkbox } from '@/components/ui/checkbox';
 import { Label } from '@/components/ui/label';
-import UserTypeSelector from '../components/auth/UserTypeSelector';
 
-const Login = () => {
+const AdminLogin = () => {
   const navigate = useNavigate();
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [adminCode, setAdminCode] = useState('');
   const [showPassword, setShowPassword] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
-  const [userType, setUserType] = useState<UserType>('student');
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setIsLoading(true);
     
     try {
-      // Here you would implement actual login logic
-      // This is just a mock for demonstration
-      console.log('Login attempt with:', { email, password, userType });
+      // Here you would implement actual admin login logic
+      console.log('Admin login attempt with:', { email, password, adminCode });
       
       // Simulate API call
       await new Promise(resolve => setTimeout(resolve, 1000));
       
       // Show success message
       toast({
-        title: "Login successful",
-        description: `Welcome back, ${email}!`,
+        title: "Admin login successful",
+        description: "Welcome to the admin dashboard.",
       });
       
-      // Redirect to dashboard
+      // Redirect to admin dashboard
       navigate('/dashboard');
     } catch (error) {
       console.error('Login error:', error);
       toast({
         variant: "destructive",
-        title: "Login failed",
-        description: "Invalid email or password. Please try again.",
+        title: "Admin login failed",
+        description: "Invalid credentials. Please try again.",
       });
     } finally {
       setIsLoading(false);
     }
   };
 
-  // Special admin login handler
-  const handleAdminLogin = () => {
-    navigate('/admin-login');
-  };
-
   return (
     <AuthLayout
-      title="Welcome back"
-      description="Sign in to your account to continue"
+      title="Admin Login"
+      description="Access the platform administration"
     >
       <div className="mt-8">
         <form onSubmit={handleSubmit} className="space-y-6">
-          <UserTypeSelector 
-            selectedType={userType} 
-            onChange={setUserType} 
-          />
+          <div className="rounded-lg bg-edu-blue-50 p-4 flex items-center gap-3 border border-edu-blue-200">
+            <div className="p-2 rounded-full bg-edu-blue-100 text-edu-blue-600">
+              <ShieldCheck size={20} />
+            </div>
+            <p className="text-sm text-edu-blue-800">
+              This area is restricted to platform administrators only.
+            </p>
+          </div>
 
           <div className="space-y-4">
             <div className="space-y-2">
@@ -81,7 +77,7 @@ const Login = () => {
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
                   className="pl-10"
-                  placeholder="you@example.com"
+                  placeholder="admin@example.com"
                   required
                   autoComplete="email"
                 />
@@ -89,12 +85,7 @@ const Login = () => {
             </div>
             
             <div className="space-y-2">
-              <div className="flex items-center justify-between">
-                <Label htmlFor="password">Password</Label>
-                <Link to="/forgot-password" className="text-sm font-medium text-edu-blue-600 hover:text-edu-blue-500">
-                  Forgot password?
-                </Link>
-              </div>
+              <Label htmlFor="password">Password</Label>
               <div className="relative">
                 <div className="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
                   <Lock className="w-5 h-5 text-gray-400" />
@@ -118,6 +109,18 @@ const Login = () => {
                 </button>
               </div>
             </div>
+            
+            <div className="space-y-2">
+              <Label htmlFor="adminCode">Admin verification code</Label>
+              <Input
+                type="text"
+                id="adminCode"
+                value={adminCode}
+                onChange={(e) => setAdminCode(e.target.value)}
+                placeholder="Enter admin verification code"
+                required
+              />
+            </div>
           </div>
           
           <div className="flex items-center">
@@ -132,28 +135,13 @@ const Login = () => {
             className="w-full"
             disabled={isLoading}
           >
-            {isLoading ? 'Signing in...' : 'Sign in'}
-          </Button>
-          
-          <div className="relative flex items-center justify-center">
-            <div className="h-px flex-1 bg-gray-200"></div>
-            <div className="px-4 text-sm text-gray-500">or</div>
-            <div className="h-px flex-1 bg-gray-200"></div>
-          </div>
-          
-          <Button
-            type="button"
-            variant="outline"
-            className="w-full"
-            onClick={handleAdminLogin}
-          >
-            Admin Login
+            {isLoading ? 'Signing in...' : 'Sign in as Admin'}
           </Button>
           
           <div className="text-center text-sm text-gray-600">
-            Don't have an account?{' '}
-            <Link to="/signup" className="font-medium text-edu-blue-600 hover:text-edu-blue-500">
-              Sign up
+            Need to go back?{' '}
+            <Link to="/login" className="font-medium text-edu-blue-600 hover:text-edu-blue-500">
+              Regular login
             </Link>
           </div>
         </form>
@@ -162,4 +150,4 @@ const Login = () => {
   );
 };
 
-export default Login;
+export default AdminLogin;
