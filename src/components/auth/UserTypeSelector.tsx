@@ -55,9 +55,10 @@ const UserTypeSelector: React.FC<UserTypeSelectorProps> = ({
               <Label
                 htmlFor={`user-type-${type.id}`}
                 className={`
-                  flex cursor-pointer rounded-lg border-2 p-4 transition-all hover:bg-gray-50
+                  flex cursor-pointer rounded-lg border-2 p-4 transition-all
+                  hover:bg-gray-50 shadow-sm hover:shadow
                   ${isSelected 
-                    ? 'border-edu-blue-600 bg-edu-blue-50' 
+                    ? 'border-edu-blue-600 bg-edu-blue-50 ring-2 ring-edu-blue-100 ring-opacity-60' 
                     : 'border-gray-200 hover:border-edu-blue-200'
                   }
                   peer-focus-visible:ring-2 peer-focus-visible:ring-edu-blue-500 peer-focus-visible:ring-offset-2
@@ -66,7 +67,8 @@ const UserTypeSelector: React.FC<UserTypeSelectorProps> = ({
                 <div className="flex w-full items-start gap-4">
                   <div className={`
                     mt-0.5 rounded-full p-2.5
-                    ${isSelected ? 'bg-edu-blue-100 text-edu-blue-600' : 'bg-gray-100 text-gray-600'}
+                    ${isSelected ? 'bg-edu-blue-600 text-white' : 'bg-gray-100 text-gray-600'}
+                    transition-colors duration-200
                   `}>
                     <Icon size={20} />
                   </div>

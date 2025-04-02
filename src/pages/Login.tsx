@@ -25,7 +25,6 @@ const Login = () => {
     
     try {
       // Here you would implement actual login logic
-      // This is just a mock for demonstration
       console.log('Login attempt with:', { email, password, userType });
       
       // Simulate API call
@@ -49,11 +48,6 @@ const Login = () => {
     } finally {
       setIsLoading(false);
     }
-  };
-
-  // Special admin login handler
-  const handleAdminLogin = () => {
-    navigate('/admin-login');
   };
 
   return (
@@ -133,21 +127,6 @@ const Login = () => {
             disabled={isLoading}
           >
             {isLoading ? 'Signing in...' : 'Sign in'}
-          </Button>
-          
-          <div className="relative flex items-center justify-center">
-            <div className="h-px flex-1 bg-gray-200"></div>
-            <div className="px-4 text-sm text-gray-500">or</div>
-            <div className="h-px flex-1 bg-gray-200"></div>
-          </div>
-          
-          <Button
-            type="button"
-            variant="outline"
-            className="w-full"
-            onClick={handleAdminLogin}
-          >
-            Admin Login
           </Button>
           
           <div className="text-center text-sm text-gray-600">

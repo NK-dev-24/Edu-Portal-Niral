@@ -1,7 +1,7 @@
 
 import React, { useState } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
-import { Mail, Lock, Eye, EyeOff, ShieldCheck } from 'lucide-react';
+import { Mail, Lock, Eye, EyeOff, ShieldCheck, AlertTriangle } from 'lucide-react';
 import AuthLayout from '../components/auth/AuthLayout';
 import { toast } from '../components/ui/use-toast';
 import { Input } from '@/components/ui/input';
@@ -50,23 +50,26 @@ const AdminLogin = () => {
 
   return (
     <AuthLayout
-      title="Admin Login"
-      description="Access the platform administration"
+      title="Platform Administration"
+      description="Secure admin access only"
     >
       <div className="mt-8">
         <form onSubmit={handleSubmit} className="space-y-6">
-          <div className="rounded-lg bg-edu-blue-50 p-4 flex items-center gap-3 border border-edu-blue-200">
-            <div className="p-2 rounded-full bg-edu-blue-100 text-edu-blue-600">
-              <ShieldCheck size={20} />
+          <div className="rounded-lg border border-yellow-300 bg-yellow-50 p-4 flex items-start gap-3 text-yellow-800">
+            <div className="mt-0.5">
+              <AlertTriangle size={20} className="text-yellow-600" />
             </div>
-            <p className="text-sm text-edu-blue-800">
-              This area is restricted to platform administrators only.
-            </p>
+            <div>
+              <h3 className="font-medium">Restricted Area</h3>
+              <p className="text-sm mt-1">
+                This area is only accessible to platform administrators. Unauthorized access attempts are logged and monitored.
+              </p>
+            </div>
           </div>
 
           <div className="space-y-4">
             <div className="space-y-2">
-              <Label htmlFor="email">Email address</Label>
+              <Label htmlFor="email">Admin email</Label>
               <div className="relative">
                 <div className="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
                   <Mail className="w-5 h-5 text-gray-400" />
@@ -85,7 +88,7 @@ const AdminLogin = () => {
             </div>
             
             <div className="space-y-2">
-              <Label htmlFor="password">Password</Label>
+              <Label htmlFor="password">Admin password</Label>
               <div className="relative">
                 <div className="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
                   <Lock className="w-5 h-5 text-gray-400" />
@@ -111,37 +114,41 @@ const AdminLogin = () => {
             </div>
             
             <div className="space-y-2">
-              <Label htmlFor="adminCode">Admin verification code</Label>
+              <Label htmlFor="adminCode" className="flex items-center gap-1">
+                <ShieldCheck className="w-4 h-4 text-edu-blue-600" />
+                <span>Security code</span>
+              </Label>
               <Input
                 type="text"
                 id="adminCode"
                 value={adminCode}
                 onChange={(e) => setAdminCode(e.target.value)}
-                placeholder="Enter admin verification code"
+                placeholder="Enter admin security code"
                 required
+                className="border-edu-blue-200 focus-visible:ring-edu-blue-500"
               />
+              <p className="text-xs text-gray-500">Required for admin authentication</p>
             </div>
           </div>
           
           <div className="flex items-center">
             <Checkbox id="remember-me" />
             <Label htmlFor="remember-me" className="ml-2 text-sm text-gray-600">
-              Remember me for 30 days
+              Remember this device (secure environments only)
             </Label>
           </div>
           
           <Button
             type="submit"
-            className="w-full"
+            className="w-full bg-edu-gray-800 hover:bg-edu-gray-900"
             disabled={isLoading}
           >
-            {isLoading ? 'Signing in...' : 'Sign in as Admin'}
+            {isLoading ? 'Authenticating...' : 'Authenticate as Administrator'}
           </Button>
           
           <div className="text-center text-sm text-gray-600">
-            Need to go back?{' '}
             <Link to="/login" className="font-medium text-edu-blue-600 hover:text-edu-blue-500">
-              Regular login
+              Return to standard login
             </Link>
           </div>
         </form>

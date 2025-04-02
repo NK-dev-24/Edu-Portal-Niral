@@ -37,7 +37,6 @@ const Signup = () => {
     
     try {
       // Here you would implement actual signup logic
-      // This is just a mock for demonstration
       console.log('Signup attempt with:', { userType, ...formData });
       
       // Simulate API call
@@ -75,140 +74,145 @@ const Signup = () => {
             onChange={setUserType} 
           />
 
-          <div className="space-y-4">
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-              <div className="space-y-2">
-                <Label htmlFor="firstName">First name</Label>
-                <div className="relative">
-                  <div className="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
-                    <User className="w-5 h-5 text-gray-400" />
-                  </div>
-                  <Input
-                    type="text"
-                    id="firstName"
-                    name="firstName"
-                    value={formData.firstName}
-                    onChange={handleChange}
-                    className="pl-10"
-                    placeholder="John"
-                    required
-                  />
-                </div>
-              </div>
-              
-              <div className="space-y-2">
-                <Label htmlFor="lastName">Last name</Label>
-                <Input
-                  type="text"
-                  id="lastName"
-                  name="lastName"
-                  value={formData.lastName}
-                  onChange={handleChange}
-                  placeholder="Doe"
-                  required
-                />
-              </div>
-            </div>
-            
-            <div className="space-y-2">
-              <Label htmlFor="email">Email address</Label>
-              <div className="relative">
-                <div className="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
-                  <Mail className="w-5 h-5 text-gray-400" />
-                </div>
-                <Input
-                  type="email"
-                  id="email"
-                  name="email"
-                  value={formData.email}
-                  onChange={handleChange}
-                  className="pl-10"
-                  placeholder="you@example.com"
-                  required
-                />
-              </div>
-            </div>
-            
-            <div className="space-y-2">
-              <Label htmlFor="password">Password</Label>
-              <div className="relative">
-                <div className="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
-                  <Lock className="w-5 h-5 text-gray-400" />
-                </div>
-                <Input
-                  type={showPassword ? "text" : "password"}
-                  id="password"
-                  name="password"
-                  value={formData.password}
-                  onChange={handleChange}
-                  className="pl-10 pr-10"
-                  placeholder="••••••••"
-                  required
-                  minLength={8}
-                />
-                <button
-                  type="button"
-                  className="absolute inset-y-0 right-0 flex items-center pr-3 text-gray-400 hover:text-gray-500"
-                  onClick={() => setShowPassword(!showPassword)}
-                >
-                  {showPassword ? <EyeOff className="w-5 h-5" /> : <Eye className="w-5 h-5" />}
-                </button>
-              </div>
-              <p className="text-xs text-gray-500">Must be at least 8 characters</p>
-            </div>
-            
-            {userType === 'instructor' && (
-              <>
+          <div className="p-5 bg-gray-50 rounded-lg border border-gray-100 shadow-sm">
+            <div className="space-y-4">
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                 <div className="space-y-2">
-                  <Label htmlFor="organization">Organization</Label>
+                  <Label htmlFor="firstName">First name</Label>
                   <div className="relative">
                     <div className="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
-                      <Building className="w-5 h-5 text-gray-400" />
+                      <User className="w-5 h-5 text-gray-400" />
                     </div>
                     <Input
                       type="text"
-                      id="organization"
-                      name="organization"
-                      value={formData.organization}
+                      id="firstName"
+                      name="firstName"
+                      value={formData.firstName}
                       onChange={handleChange}
                       className="pl-10"
-                      placeholder="Organization or institution"
+                      placeholder="John"
                       required
                     />
                   </div>
                 </div>
                 
                 <div className="space-y-2">
-                  <Label htmlFor="jobTitle">Job title</Label>
-                  <div className="relative">
-                    <div className="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
-                      <Briefcase className="w-5 h-5 text-gray-400" />
+                  <Label htmlFor="lastName">Last name</Label>
+                  <Input
+                    type="text"
+                    id="lastName"
+                    name="lastName"
+                    value={formData.lastName}
+                    onChange={handleChange}
+                    placeholder="Doe"
+                    required
+                  />
+                </div>
+              </div>
+              
+              <div className="space-y-2">
+                <Label htmlFor="email">Email address</Label>
+                <div className="relative">
+                  <div className="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
+                    <Mail className="w-5 h-5 text-gray-400" />
+                  </div>
+                  <Input
+                    type="email"
+                    id="email"
+                    name="email"
+                    value={formData.email}
+                    onChange={handleChange}
+                    className="pl-10"
+                    placeholder="you@example.com"
+                    required
+                  />
+                </div>
+              </div>
+              
+              <div className="space-y-2">
+                <Label htmlFor="password">Password</Label>
+                <div className="relative">
+                  <div className="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
+                    <Lock className="w-5 h-5 text-gray-400" />
+                  </div>
+                  <Input
+                    type={showPassword ? "text" : "password"}
+                    id="password"
+                    name="password"
+                    value={formData.password}
+                    onChange={handleChange}
+                    className="pl-10 pr-10"
+                    placeholder="••••••••"
+                    required
+                    minLength={8}
+                  />
+                  <button
+                    type="button"
+                    className="absolute inset-y-0 right-0 flex items-center pr-3 text-gray-400 hover:text-gray-500"
+                    onClick={() => setShowPassword(!showPassword)}
+                  >
+                    {showPassword ? <EyeOff className="w-5 h-5" /> : <Eye className="w-5 h-5" />}
+                  </button>
+                </div>
+                <p className="text-xs text-gray-500">Must be at least 8 characters</p>
+              </div>
+              
+              {userType === 'instructor' && (
+                <div className="mt-4 p-4 border-t border-gray-200">
+                  <h4 className="font-medium text-gray-900 mb-3">Instructor Information</h4>
+                  <div className="space-y-4">
+                    <div className="space-y-2">
+                      <Label htmlFor="organization">Organization</Label>
+                      <div className="relative">
+                        <div className="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
+                          <Building className="w-5 h-5 text-gray-400" />
+                        </div>
+                        <Input
+                          type="text"
+                          id="organization"
+                          name="organization"
+                          value={formData.organization}
+                          onChange={handleChange}
+                          className="pl-10"
+                          placeholder="Organization or institution"
+                          required
+                        />
+                      </div>
                     </div>
-                    <Input
-                      type="text"
-                      id="jobTitle"
-                      name="jobTitle"
-                      value={formData.jobTitle}
-                      onChange={handleChange}
-                      className="pl-10"
-                      placeholder="Job title"
-                      required
-                    />
+                    
+                    <div className="space-y-2">
+                      <Label htmlFor="jobTitle">Job title</Label>
+                      <div className="relative">
+                        <div className="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
+                          <Briefcase className="w-5 h-5 text-gray-400" />
+                        </div>
+                        <Input
+                          type="text"
+                          id="jobTitle"
+                          name="jobTitle"
+                          value={formData.jobTitle}
+                          onChange={handleChange}
+                          className="pl-10"
+                          placeholder="Job title"
+                          required
+                        />
+                      </div>
+                    </div>
                   </div>
                 </div>
-              </>
-            )}
+              )}
+            </div>
           </div>
           
           <div className="flex items-center space-x-2">
             <Checkbox id="terms" required />
             <Label htmlFor="terms" className="text-sm text-gray-700">
               I agree to the{' '}
-              <Link to="/terms" className="text-edu-blue-600 hover:text-edu-blue-500">
+              <Link to="/terms" className="text-edu-blue-600 hover:text-edu-blue-500 underline">
                 Terms of Service
               </Link>{' '}
               and{' '}
-              <Link to="/privacy" className="text-edu-blue-600 hover:text-edu-blue-500">
+              <Link to="/privacy" className="text-edu-blue-600 hover:text-edu-blue-500 underline">
                 Privacy Policy
               </Link>
             </Label>
@@ -216,7 +220,7 @@ const Signup = () => {
           
           <Button
             type="submit"
-            className="w-full"
+            className="w-full bg-edu-blue-600 hover:bg-edu-blue-700"
             disabled={isLoading}
           >
             {isLoading ? 'Creating account...' : 'Create account'}
