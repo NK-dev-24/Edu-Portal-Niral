@@ -16,7 +16,6 @@ const Signup = () => {
   const [showPassword, setShowPassword] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   
-  // Form fields
   const [formData, setFormData] = useState({
     firstName: '',
     lastName: '',
