@@ -183,7 +183,8 @@ const Signup = () => {
                     <div className="space-y-2">
                       <Label htmlFor="jobTitle">Job title</Label>
                       <div className="relative">
-                        <div className="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
+                        <div className="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">npm install express mongoose bcryptjs jsonwebtoken dotenv nodemailer
+
                           <Briefcase className="w-5 h-5 text-gray-400" />
                         </div>
                         <Input
